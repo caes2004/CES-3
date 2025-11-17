@@ -1,0 +1,53 @@
+POST http://localhost:8080/student/create
+Content-Type: application/json
+
+{
+  "nombre": "Juan Pérez",
+  "edad": 22,
+  "correo": "juan.perez@example.com",
+  "telefono": "3001234567",
+  "ciudadResidencia": "Bogotá",
+  "informacionAcademica": [
+    {
+      "programa": "Ingeniería de Sistemas",
+      "semestreActual": 6,
+      "promedioAcumulado": 4.2,
+      "materiasInscirtas": [
+        "Programación Avanzada",
+        "Bases de Datos",
+        "Arquitectura de Software"
+      ],
+      "detalleMaterias": {
+        "Programación Avanzada": {
+          "creditos": 3,
+          "profesor": "Dr. García",
+          "horario": "Lunes y Miércoles 8:00-10:00"
+        },
+        "Bases de Datos": {
+          "creditos": 4,
+          "profesor": "Ing. Martínez",
+          "horario": "Martes y Jueves 10:00-12:00"
+        }
+      }
+    }
+  ],
+  "preferenciasEstudiante": [
+    {
+      "modalidadEstudio": "Presencial",
+      "actividadesExtraCurriculares": [
+        "Club de Programación",
+        "Equipo de Fútbol",
+        "Voluntariado"
+      ],
+      "notificaciones": {
+        "email": true,
+        "sms": false,
+        "push": true,
+        "recordatorios": true
+      }
+    }
+  ]
+}
+
+GET http://localhost:8080/student/get
+
