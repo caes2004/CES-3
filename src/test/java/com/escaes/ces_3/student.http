@@ -1,4 +1,18 @@
-POST http://localhost:8080/student/create
+### ============================================
+### API de Estudiantes - Versión 1 (V1)
+### Almacenamiento en Memoria
+### ============================================
+
+### Variables (cambiar según necesidad)
+@baseUrl = http://localhost:8080
+@apiVersion = v1
+@studentId = 550e8400-e29b-41d4-a716-446655440000
+
+### ============================================
+### 1. CREAR ESTUDIANTE (POST)
+### ============================================
+POST {{baseUrl}}/student/create
+X-API-Version: {{apiVersion}}
 Content-Type: application/json
 
 {
@@ -49,5 +63,96 @@ Content-Type: application/json
   ]
 }
 
-GET http://localhost:8080/student/get
+### ============================================
+### 2. OBTENER TODOS LOS ESTUDIANTES (GET)
+### ============================================
+GET {{baseUrl}}/student/get
+X-API-Version: {{apiVersion}}
+Content-Type: application/json
 
+### ============================================
+### 3. ACTUALIZAR ESTUDIANTE COMPLETO (PUT)
+### Reemplaza TODO el objeto - debes enviar todos los campos
+### ============================================
+PUT {{baseUrl}}/student/put/{{studentId}}
+X-API-Version: {{apiVersion}}
+Content-Type: application/json
+
+{
+  "nombre": "María González",
+  "edad": 25,
+  "correo": "maria.gonzalez@example.com",
+  "telefono": "3109876543",
+  "ciudadResidencia": "Medellín",
+  "informacionAcademica": [
+    {
+      "programa": "Ingeniería Industrial",
+      "semestreActual": 8,
+      "promedioAcumulado": 4.5,
+      "materiasInscirtas": [
+        "Gestión de Proyectos",
+        "Investigación de Operaciones"
+      ],
+      "detalleMaterias": {
+        "Gestión de Proyectos": {
+          "creditos": 4,
+          "profesor": "Dr. López",
+          "horario": "Lunes 14:00-18:00"
+        }
+      }
+    }
+  ],
+  "preferenciasEstudiante": [
+    {
+      "modalidadEstudio": "Híbrida",
+      "actividadesExtraCurriculares": [
+        "Club de Debate"
+      ],
+      "notificaciones": {
+        "email": true,
+        "sms": true,
+        "push": true,
+        "recordatorios": false
+      }
+    }
+  ]
+}
+
+### ============================================
+### 4. ACTUALIZAR ESTUDIANTE PARCIAL (PATCH)
+### Solo actualiza los campos que envías
+### ============================================
+PATCH {{baseUrl}}/student/patch/{{studentId}}
+X-API-Version: {{apiVersion}}
+Content-Type: application/json
+
+{
+  "nombre": "Juan Carlos Pérez",
+  "edad": 23
+}
+
+### Ejemplo: Solo cambiar el correo
+PATCH {{baseUrl}}/student/patch/{{studentId}}
+X-API-Version: {{apiVersion}}
+Content-Type: application/json
+
+{
+  "correo": "nuevo.correo@example.com"
+}
+
+### Ejemplo: Cambiar múltiples campos
+PATCH {{baseUrl}}/student/patch/{{studentId}}
+X-API-Version: {{apiVersion}}
+Content-Type: application/json
+
+{
+  "telefono": "3201112222",
+  "ciudadResidencia": "Cali"
+}
+
+### ============================================
+### 5. ELIMINAR ESTUDIANTE (DELETE)
+### ============================================
+DELETE {{baseUrl}}/student/delete/{{studentId}}
+X-API-Version: {{apiVersion}}
+Content-Type: application/json

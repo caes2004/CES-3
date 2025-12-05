@@ -1,6 +1,8 @@
 package com.escaes.ces_3.dto;
 
 import java.util.List;
+import java.util.UUID;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
@@ -10,6 +12,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class StudentDTO {
 
+    private UUID id;
 
     private String nombre;
 
