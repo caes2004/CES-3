@@ -6,13 +6,16 @@
 ### Variables (cambiar según necesidad)
 @baseUrl = http://localhost:8080
 @apiVersion = v1
-@studentId = 550e8400-e29b-41d4-a716-446655440000
+@apiPath = /api/{{apiVersion}}
+@studentId = 64c52a23-81bc-4d73-8b41-cb77b149fd97
+
+### NOTA: Para cambiar la versión, solo modifica @apiVersion arriba
+### Ejemplo: @apiVersion = v2  ->  Usará /api/v2/...
 
 ### ============================================
 ### 1. CREAR ESTUDIANTE (POST)
 ### ============================================
-POST {{baseUrl}}/student/create
-X-API-Version: {{apiVersion}}
+POST {{baseUrl}}{{apiPath}}/student/create
 Content-Type: application/json
 
 {
@@ -66,16 +69,14 @@ Content-Type: application/json
 ### ============================================
 ### 2. OBTENER TODOS LOS ESTUDIANTES (GET)
 ### ============================================
-GET {{baseUrl}}/student/get
-X-API-Version: {{apiVersion}}
+GET {{baseUrl}}{{apiPath}}/student/get
 Content-Type: application/json
 
 ### ============================================
 ### 3. ACTUALIZAR ESTUDIANTE COMPLETO (PUT)
 ### Reemplaza TODO el objeto - debes enviar todos los campos
 ### ============================================
-PUT {{baseUrl}}/student/put/{{studentId}}
-X-API-Version: {{apiVersion}}
+PUT {{baseUrl}}{{apiPath}}/student/put/{{studentId}}
 Content-Type: application/json
 
 {
@@ -122,8 +123,7 @@ Content-Type: application/json
 ### 4. ACTUALIZAR ESTUDIANTE PARCIAL (PATCH)
 ### Solo actualiza los campos que envías
 ### ============================================
-PATCH {{baseUrl}}/student/patch/{{studentId}}
-X-API-Version: {{apiVersion}}
+PATCH {{baseUrl}}{{apiPath}}/student/patch/{{studentId}}
 Content-Type: application/json
 
 {
@@ -132,8 +132,7 @@ Content-Type: application/json
 }
 
 ### Ejemplo: Solo cambiar el correo
-PATCH {{baseUrl}}/student/patch/{{studentId}}
-X-API-Version: {{apiVersion}}
+PATCH {{baseUrl}}{{apiPath}}/student/patch/{{studentId}}
 Content-Type: application/json
 
 {
@@ -141,8 +140,7 @@ Content-Type: application/json
 }
 
 ### Ejemplo: Cambiar múltiples campos
-PATCH {{baseUrl}}/student/patch/{{studentId}}
-X-API-Version: {{apiVersion}}
+PATCH {{baseUrl}}{{apiPath}}/student/patch/{{studentId}}
 Content-Type: application/json
 
 {
@@ -153,6 +151,5 @@ Content-Type: application/json
 ### ============================================
 ### 5. ELIMINAR ESTUDIANTE (DELETE)
 ### ============================================
-DELETE {{baseUrl}}/student/delete/{{studentId}}
-X-API-Version: {{apiVersion}}
+DELETE {{baseUrl}}{{apiPath}}/student/delete/{{studentId}}
 Content-Type: application/json

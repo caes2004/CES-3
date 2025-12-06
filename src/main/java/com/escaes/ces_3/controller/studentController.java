@@ -44,7 +44,7 @@ import org.springframework.web.bind.annotation.PathVariable;
  * @version 1.0 - Almacenamiento en memoria
  */
 @RestController
-@RequestMapping(value = "/student", version = "v1")
+@RequestMapping(value = "/student", version = "1")
 @RequiredArgsConstructor
 public class studentController {
 
