@@ -1,4 +1,4 @@
-package com.escaes.ces_3.dto;
+package com.escaes.ces_3.dto.v1;
 
 import java.util.List;
 import java.util.UUID;

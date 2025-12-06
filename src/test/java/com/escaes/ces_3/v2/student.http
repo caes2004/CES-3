@@ -1,0 +1,132 @@
+### ============================================
+### API de Estudiantes - Versión 2 (V2)
+### Usa DTOs v2 (StudentDTO, AcademicInfoDTO, AcademicMateriaDTO, StudentPreferenceDTO, PreferenceActividadDTO)
+### ============================================
+
+### Variables (ajusta según necesidad)
+@baseUrl = http://localhost:8080
+@apiVersion = v2
+@apiPath = /api/{{apiVersion}}
+@studentId = 64c52a23-81bc-4d73-8b41-cb77b149fd97
+
+### NOTA: En v2 los DTOs usan nombres y estructuras diferentes a v1:
+### - `academicInfos` es List<AcademicInfoDTO> con campos: programa, semestreActual, promedioAcumulado, detalleMaterias (String), materias (lista de objetos {materia})
+### - `preferences` es List<StudentPreferenceDTO> con campos: modalidadEstudio, notificaciones (String), actividades (lista de objetos {actividad})
+
+### ============================================
+### 1. CREAR ESTUDIANTE (POST) - v2
+### ============================================
+POST {{baseUrl}}{{apiPath}}/student/create
+Content-Type: application/json
+
+{
+  "nombre": "Juan Pérez",
+  "edad": 22,
+  "correo": "juan.perez@example.com",
+  "telefono": "3001234567",
+  "ciudadResidencia": "Bogotá",
+  "academicInfos": [
+    {
+      "programa": "Ingeniería de Sistemas",
+      "semestreActual": 6,
+      "promedioAcumulado": 4.2,
+      "detalleMaterias": "{\"Programación Avanzada\":{\"creditos\":3,\"profesor\":\"Dr. García\"}}",
+      "materias": [
+        { "materia": "Programación Avanzada" },
+        { "materia": "Bases de Datos" }
+      ]
+    }
+  ],
+  "preferences": [
+    {
+      "modalidadEstudio": "Presencial",
+      "notificaciones": "{\"email\":true, \"sms\":false, \"push\":true}",
+      "actividades": [
+        { "actividad": "Club de Programación" },
+        { "actividad": "Voluntariado" }
+      ]
+    }
+  ]
+}
+
+### ============================================
+### 2. OBTENER TODOS LOS ESTUDIANTES (GET) - v2
+### ============================================
+GET {{baseUrl}}{{apiPath}}/student/get
+Content-Type: application/json
+
+### ============================================
+### 3. ACTUALIZAR ESTUDIANTE COMPLETO (PUT) - v2
+### Reemplaza TODO el objeto - debes enviar todos los campos
+### ============================================
+PUT {{baseUrl}}{{apiPath}}/student/put/{{studentId}}
+Content-Type: application/json
+
+{
+  "id": "{{studentId}}",
+  "nombre": "María González",
+  "edad": 25,
+  "correo": "maria.gonzalez@example.com",
+  "telefono": "3109876543",
+  "ciudadResidencia": "Medellín",
+  "academicInfos": [
+    {
+      "programa": "Ingeniería Industrial",
+      "semestreActual": 8,
+      "promedioAcumulado": 4.5,
+      "detalleMaterias": "Resumen de materias y notas",
+      "materias": [
+        { "materia": "Gestión de Proyectos" },
+        { "materia": "Investigación de Operaciones" }
+      ]
+    }
+  ],
+  "preferences": [
+    {
+      "modalidadEstudio": "Híbrida",
+      "notificaciones": "{\"email\":true, \"sms\":true}",
+      "actividades": [
+        { "actividad": "Club de Debate" }
+      ]
+    }
+  ]
+}
+
+### ============================================
+### 4. ACTUALIZAR ESTUDIANTE PARCIAL (PATCH) - v2
+### Solo actualizará los campos que envíes
+### ============================================
+PATCH {{baseUrl}}{{apiPath}}/student/patch/{{studentId}}
+Content-Type: application/json
+
+{
+  "id": "{{studentId}}",
+  "nombre": "Juan Carlos Pérez",
+  "edad": 23
+}
+
+### Ejemplo: Solo cambiar el correo
+PATCH {{baseUrl}}{{apiPath}}/student/patch/{{studentId}}
+Content-Type: application/json
+
+{
+  "id": "{{studentId}}",
+  "correo": "nuevo.correo@example.com"
+}
+
+### Ejemplo: Cambiar múltiples campos
+PATCH {{baseUrl}}{{apiPath}}/student/patch/{{studentId}}
+Content-Type: application/json
+
+{
+  "id": "{{studentId}}",
+  "telefono": "3201112222",
+  "ciudadResidencia": "Cali"
+}
+
+### ============================================
+### 5. ELIMINAR ESTUDIANTE (DELETE) - v2
+### ============================================
+DELETE {{baseUrl}}{{apiPath}}/student/delete/{{studentId}}
+Content-Type: application/json
+

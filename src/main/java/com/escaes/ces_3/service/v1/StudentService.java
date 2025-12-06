@@ -1,4 +1,4 @@
-package com.escaes.ces_3.service;
+package com.escaes.ces_3.service.v1;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
-import com.escaes.ces_3.dto.StudentDTO;
+import com.escaes.ces_3.dto.v1.StudentDTO;
 
 /**
  * Servicio para la gestión de estudiantes.

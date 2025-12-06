@@ -1,5 +1,5 @@
 spring:
   application:
     name: ces-3
-  profiles: 
-    active: dev
+  profiles:
+    active: prod

@@ -1,10 +1,10 @@
-package com.escaes.ces_3.controller;
+package com.escaes.ces_3.controller.v1;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.escaes.ces_3.dto.StudentDTO;
-import com.escaes.ces_3.service.StudentService;
+import com.escaes.ces_3.dto.v1.StudentDTO;
+import com.escaes.ces_3.service.v1.StudentService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -26,24 +26,24 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  * Controlador REST para la gestión de estudiantes - Versión 1 (V1).
- * 
+ *
  * Esta versión utiliza almacenamiento en memoria. Los datos se guardan en una lista
  * y se pierden al reiniciar la aplicación.
- * 
+ *
  * Para acceder a este controlador, el cliente debe incluir en la petición HTTP
  * uno de los siguientes headers:
  * - X-API-Version: v1
  * - Accept-Version: v1
- * 
+ *
  * Ejemplo de petición:
  * GET /student/get
  * Headers:
  *   X-API-Version: v1
  *   Content-Type: application/json
- * 
+ *
  * @version 1.0 - Almacenamiento en memoria
  */
-@RestController
+@RestController("studentControllerV1")
 @RequestMapping(value = "/student", version = "1")
 @RequiredArgsConstructor
 public class studentController {
@@ -64,7 +64,7 @@ public class studentController {
 
         return ResponseEntity.ok(studentService.getStudents());
     }
-    
+
     @PutMapping("/put/{id}")
     public ResponseEntity<StudentDTO> actualizarEstudiantePUT(@PathVariable UUID id, @RequestBody StudentDTO request) {
         return ResponseEntity.ok(studentService.updateStudent(id, request));
@@ -76,7 +76,7 @@ public class studentController {
         return ResponseEntity.ok(studentService.patchStudent(id, request));
     }
 
-  
+
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> eliminarEstudiante(@PathVariable UUID id) {
         studentService.deleteStudent(id);
@@ -84,3 +84,4 @@ public class studentController {
     }
 
 }
+
