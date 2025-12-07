@@ -1,8 +1,6 @@
 package com.escaes.ces_3.mappers;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import com.escaes.ces_3.dto.v2.AcademicInfoDTO;
@@ -30,14 +28,14 @@ public class StudentMapper {
                 .ciudadResidencia(student.getCiudadResidencia())
                 .build();
 
-        if (student.getAcademicInfos() != null) {
+        if (student.getAcademicInfos() != null && !student.getAcademicInfos().isEmpty()) {
             dto.setAcademicInfos(student.getAcademicInfos().stream()
                     .filter(Objects::nonNull)
                     .map(StudentMapper::academicInfoToDto)
                     .collect(Collectors.toList()));
         }
 
-        if (student.getPreferences() != null) {
+        if (student.getPreferences() != null && !student.getPreferences().isEmpty()) {
             dto.setPreferences(student.getPreferences().stream()
                     .filter(Objects::nonNull)
                     .map(StudentMapper::preferenceToDto)
@@ -59,23 +57,23 @@ public class StudentMapper {
         student.setCiudadResidencia(dto.getCiudadResidencia());
 
         if (dto.getAcademicInfos() != null) {
-            List<AcademicInfo> infos = dto.getAcademicInfos().stream()
+            Set<AcademicInfo> infos = dto.getAcademicInfos().stream()
                     .filter(Objects::nonNull)
                     .map(aDto -> academicInfoToEntity(aDto, student))
-                    .collect(Collectors.toList());
+                    .collect(Collectors.toSet());
             student.setAcademicInfos(infos);
         } else {
-            student.setAcademicInfos(new ArrayList<>());
+            student.setAcademicInfos(new HashSet<>());
         }
 
         if (dto.getPreferences() != null) {
-            List<StudentPreference> prefs = dto.getPreferences().stream()
+            Set<StudentPreference> prefs = dto.getPreferences().stream()
                     .filter(Objects::nonNull)
                     .map(pDto -> preferenceToEntity(pDto, student))
-                    .collect(Collectors.toList());
+                    .collect(Collectors.toSet());
             student.setPreferences(prefs);
         } else {
-            student.setPreferences(new ArrayList<>());
+            student.setPreferences(new HashSet<>());
         }
 
         return student;
@@ -112,13 +110,13 @@ public class StudentMapper {
         ai.setStudent(parent);
 
         if (dto.getMaterias() != null) {
-            List<AcademicMateria> materias = dto.getMaterias().stream()
+            Set<AcademicMateria> materias = dto.getMaterias().stream()
                     .filter(Objects::nonNull)
                     .map(mDto -> materiaToEntity(mDto, ai))
-                    .collect(Collectors.toList());
+                    .collect(Collectors.toSet());
             ai.setMaterias(materias);
         } else {
-            ai.setMaterias(new ArrayList<>());
+            ai.setMaterias(new HashSet<>());
         }
 
         return ai;
@@ -169,13 +167,13 @@ public class StudentMapper {
         p.setStudent(parent);
 
         if (dto.getActividades() != null) {
-            List<PreferenceActividad> actividades = dto.getActividades().stream()
+            Set<PreferenceActividad> actividades = dto.getActividades().stream()
                     .filter(Objects::nonNull)
                     .map(aDto -> actividadToEntity(aDto, p))
-                    .collect(Collectors.toList());
+                    .collect(Collectors.toSet());
             p.setActividades(actividades);
         } else {
-            p.setActividades(new ArrayList<>());
+            p.setActividades(new HashSet<>());
         }
 
         return p;

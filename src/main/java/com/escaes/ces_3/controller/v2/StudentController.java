@@ -49,12 +49,12 @@ public class StudentController {
 
     @PutMapping("/put/{id}")
     public ResponseEntity<StudentDTO> updateStudentV2(@PathVariable UUID id, @RequestBody StudentDTO request) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(studentService.update(request));
+        return ResponseEntity.status(HttpStatus.CREATED).body(studentService.update(id,request));
     }
 
     @PatchMapping("/patch/{id}")
     public ResponseEntity<StudentDTO> patchStudentV2(@PathVariable UUID id, @RequestBody StudentDTO request) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(studentService.update(request));
+        return ResponseEntity.status(HttpStatus.CREATED).body(studentService.update(id,request));
     }
 
     @DeleteMapping("/delete/{id}")

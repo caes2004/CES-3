@@ -1,6 +1,7 @@
 package com.escaes.ces_3.models;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -17,6 +18,7 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
@@ -27,10 +29,12 @@ import lombok.ToString;
 @AllArgsConstructor
 @Builder
 @ToString(exclude = { "student", "materias" })
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class AcademicInfo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -49,7 +53,7 @@ public class AcademicInfo {
     @Column(name = "detalle_materias", columnDefinition = "TEXT")
     private String detalleMaterias;
 
-    @OneToMany(mappedBy = "academicInfo", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<AcademicMateria> materias;
+    @OneToMany(mappedBy = "academicInfo", fetch = FetchType.LAZY)
+    private Set<AcademicMateria> materias = new HashSet<>();
 
 }

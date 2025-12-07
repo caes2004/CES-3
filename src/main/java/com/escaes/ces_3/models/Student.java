@@ -1,6 +1,7 @@
 package com.escaes.ces_3.models;
 
-import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
 import java.util.UUID;
 
 import jakarta.persistence.CascadeType;
@@ -14,6 +15,7 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
@@ -24,9 +26,11 @@ import lombok.ToString;
 @AllArgsConstructor
 @Builder
 @ToString(exclude = { "academicInfos", "preferences" })
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Student {
 
     @Id
+    @EqualsAndHashCode.Include
     @Column(length = 36)
     private UUID id;
 
@@ -46,9 +50,9 @@ public class Student {
     private String ciudadResidencia;
 
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<AcademicInfo> academicInfos;
+    private Set<AcademicInfo> academicInfos = new HashSet<>();
 
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<StudentPreference> preferences;
+    private Set<StudentPreference> preferences = new HashSet<>();
 
 }

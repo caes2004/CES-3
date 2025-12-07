@@ -7,7 +7,7 @@
 @baseUrl = http://localhost:8080
 @apiVersion = v2
 @apiPath = /api/{{apiVersion}}
-@studentId = 64c52a23-81bc-4d73-8b41-cb77b149fd97
+@studentId = bc483f9a-1b42-49cf-859c-39809492f337
 
 ### NOTA: En v2 los DTOs usan nombres y estructuras diferentes a v1:
 ### - `academicInfos` es List<AcademicInfoDTO> con campos: programa, semestreActual, promedioAcumulado, detalleMaterias (String), materias (lista de objetos {materia})
