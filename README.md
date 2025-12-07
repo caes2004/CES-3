@@ -170,7 +170,7 @@ El proyecto incluye un `Dockerfile` para containerización. Para construir y eje
 docker build -t ces-3-api .
 
 # Ejecutar el contenedor
-docker run -p 8080:8080 ces-3-api
+docker run -d -p 80:8080 ces-3-api
 ```
 
 ##  Notas Importantes
