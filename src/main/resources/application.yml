@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: ces-3
+
+  profiles:
+    active: prod
+
