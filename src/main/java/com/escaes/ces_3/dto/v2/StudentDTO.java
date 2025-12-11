@@ -1,3 +1,4 @@
+// java
 package com.escaes.ces_3.dto.v2;
 
 import java.util.List;
@@ -26,9 +27,11 @@ public class StudentDTO {
 
     private String ciudadResidencia;
 
+    @Builder.Default
+    private String hash = UUID.randomUUID().toString();
+
     private List<AcademicInfoDTO> academicInfos;
 
     private List<StudentPreferenceDTO> preferences;
 
 }
-

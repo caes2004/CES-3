@@ -26,6 +26,7 @@ public class StudentMapper {
                 .correo(student.getCorreo())
                 .telefono(student.getTelefono())
                 .ciudadResidencia(student.getCiudadResidencia())
+                .hash(UUID.randomUUID().toString())
                 .build();
 
         if (student.getAcademicInfos() != null && !student.getAcademicInfos().isEmpty()) {
